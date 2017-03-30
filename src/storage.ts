@@ -79,63 +79,28 @@ export class ProjectStorage {
     this.projectList[index].root_path = path;
   }
 
-  
-
-  /**
-   * Checks if exists a project with a given `name`
-   * 
-   * @param `name` The [Project Name](#Project.name) to search for projects
-   *
-   * @return `true` or `false`
-   */
-  public exists(name: string): boolean {
+  public exists(project_name: string): boolean {
     let found: boolean = false;
 
-    // for (let i = 0; i < this.projectList.length; i++) {
-    for (let element of this.projectList) {
-      // let element = this.projectList[i];
-      if (element.name.toLocaleLowerCase() === name.toLocaleLowerCase()) {
-        found = true;
-      }
+    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
+
+    if (index !< 0 ) {
+      found = true;
     }
     return found;
   }
 
-  /**
-   * Checks if exists a project with a given `rootPath`
-   * 
-   * @param `rootPath` The path to search for projects
-   *
-   * @return A [Project](#Project) with the given `rootPath`
-   */
-  public existsWithRootPath(rootPath: string): Project {
-    // for (let i = 0; i < this.projectList.length; i++) {
-    for (let element of this.projectList) {
-      // let element = this.projectList[i];
-      if (element.rootPath.toLocaleLowerCase() === rootPath.toLocaleLowerCase()) {
-        return element;
-      }
-    }
+  public existsWithRootPath(root_path: string): Project {
+    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `root_path`, root_path);
+
+    return this.projectList[index];
   }
 
-  /**
-   * Returns the number of projects stored in `projects.json`
-   * 
-   * > The _dynamic projects_ like VSCode and Git aren't present
-   *
-   * @return The number of projects
-   */
   public length(): number {
     return this.projectList.length;
   }
 
-  /**
-   * Loads the `projects.json` file
-   *
-   * @return A `string` containing the _Error Message_ in case something goes wrong. 
-   *         An **empty string** if everything is ok.
-   */
-  public load( /*file: string*/ ): string {
+  public load(): string {
     let items = [];
 
     // missing file (new install)
@@ -146,33 +111,14 @@ export class ProjectStorage {
 
     try {
       items = JSON.parse(fs.readFileSync(this.filename).toString());
+      this.projectList = items as ProjectList;
 
-      // OLD format
-      if ((items.length > 0) && (items[0].label)) {
-        // for (let index = 0; index < items.length; index++) {
-        for (let element of items) {
-          // let element = items[index];
-          this.projectList.push(new ProjectItem(element.label, element.description));
-        }
-        // save updated
-        this.save();
-      } else { // NEW format
-        this.projectList = items as ProjectList;
-        // this.projectList = <ProjectList>items;
-      }
       return "";
     } catch (error) {
       return error.toString();
     }
   }
 
-  /**
-   * Reloads the `projects.json` file. 
-   * 
-   * > Using a forced _reload_ instead of a _watcher_ 
-   *
-   * @return `void`
-   */
   public reload() {
     let items = [];
 
@@ -180,30 +126,19 @@ export class ProjectStorage {
     if (!fs.existsSync(this.filename)) {
       this.projectList = items as ProjectList;
     } else {
-      items = JSON.parse(fs.readFileSync(this.filename).toString());
-      this.projectList = items as ProjectList;
+      this.load();
     }
   }
 
-  /**
-   * Saves the `projects.json` file to disk
-   * 
-   * @return `void`
-   */
   public save() {
     fs.writeFileSync(this.filename, JSON.stringify(this.projectList, null, "\t"));
   }
 
-  /**
-   * Maps the projects to be used by a `showQuickPick`
-   * 
-   * @return A list of projects `{[label, description]}` to be used on a `showQuickPick`
-   */
   public map(): any {
     let newItems = this.projectList.map(item => {
       return {
         label: item.name,
-        description: item.rootPath
+        description: item.root_path
       };
     });
     return newItems;
