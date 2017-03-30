@@ -2,9 +2,9 @@ import * as _ from 'lodash';
 import { Project } from './storage';
 
 export class utils {
-  public getProjectIndex(project_list: Project[], project_name: string): number {
-    return _.findIndex(project_list, (o) => {
-      return o.name === project_name
+  public getIndexWherePropertyIs<T>(array:T[], property_name: string, value: string): number {
+    return _.findIndex(array, (o) => {
+      return o[property_name] === value;
     });;
   }
 }
