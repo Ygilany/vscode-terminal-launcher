@@ -12,15 +12,12 @@ export function activate(context: vscode.ExtensionContext) {
 
         let configurations = getConfig();
         console.log(configurations)
-        if (configurations.rootDir === vscode.workspace.rootPath){
             
             let terminalObj = vscode.window.createTerminal(`application`);
             terminalObj.sendText(`npm run dev`);
             terminalObj.show();
             vscode.window.createTerminal(`transpile`).sendText(`npm run babel-dev`);
-        } else {
-            vscode.window.showInformationMessage(`we're not in the right folder` + configurations.rootDir);
-        }
+       
     });
 
     context.subscriptions.push(disposable);
