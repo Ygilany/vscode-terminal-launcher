@@ -10,14 +10,8 @@ suite("Utils Tests", () => {
     setup( () => {
         utils_obj = new utils();        
     })
-
-    // Defines a Mocha unit test
-    test("Something 1", () => {
-        assert.equal(-1, [1, 2, 3].indexOf(5));
-        assert.equal(-1, [1, 2, 3].indexOf(0));
-    });
     
-    test("getIndexWherePropertyIs should return index of element in Array start empty", () => {
+    test("getIndexWherePropertyIs should return index of element in Array", () => {
       let arr = [{name: "yahya"}, {name: "john"}, {name: "andrew"}];
       let retval = utils_obj.getIndexWherePropertyIs(arr, `name`, `john`);
 
