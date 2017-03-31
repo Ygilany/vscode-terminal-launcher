@@ -1,13 +1,13 @@
 import { workspace } from 'vscode';
 
 export interface Config {
-    rootDir: String
+    projectsLocation: string
 }
 
 export function getConfig(): Config {
     const configuration = workspace.getConfiguration('ygilany');
 
     return {
-        rootDir: configuration.rootDir
+        projectsLocation: configuration.projectsLocation
     }
 }
