@@ -3,13 +3,19 @@ import * as os from 'os';
 import * as path from 'path';
 import * as vscode from "vscode";
 
-import { getConfig } from './config';
-import { 
+import {
+	getConfig
+} from './config';
+import {
 	commandNameInputBoxOptions,
 	commandScriptInputBoxOptions,
 	projectNameInputBoxOptions
 } from './inputBoxOptions';
-import { Project, ProjectStorage } from './storage';
+import {
+	Project,
+	ProjectStorage,
+	TerminalCommand
+} from './storage';
 
 const homeDir = os.homedir();
 const PROJECTS_FILE = `terminal-projects.json`;
@@ -37,50 +43,45 @@ export function activate(context: vscode.ExtensionContext) {
 					vscode.window.showWarningMessage("You must define a name for the project.");
 					return;
 				}
+				const _command: TerminalCommand = getNewCommand();
 
-				vscode.window.showInputBox(commandNameInputBoxOptions())
-					.then(_commandName => {
-						vscode.window.showInputBox(commandScriptInputBoxOptions())
-							.then(_commandScript => {
-								if (!projectStorage.exists(projectName)) {
-									projectStorage.addToProjectList(_projectName, projectPath, _commandName, _commandScript);
-									projectStorage.save();
+				if (!projectStorage.exists(projectName)) {
+					projectStorage.addToProjectList(_projectName, projectPath, _command);
+					projectStorage.save();
 
-									vscode.window.showInformationMessage("Project saved!");
-								} else {
-									const optionAddCommand = {
-										title: "Add Command"
-									} as vscode.MessageItem;
-									const optionCancel = {
-										title: "Cancel"
-									} as vscode.MessageItem;
+					vscode.window.showInformationMessage("Project saved!");
+				} else {
+					const optionAddCommand = {
+						title: "Add Command"
+					} as vscode.MessageItem;
+					const optionCancel = {
+						title: "Cancel"
+					} as vscode.MessageItem;
 
-									vscode.window.showInformationMessage("Project already exists!", optionAddCommand, optionCancel)
-										.then(option => {
-											// nothing selected
-											if (typeof option === "undefined") {
-												return;
-											}
+					vscode.window.showInformationMessage("Project already exists!", optionAddCommand, optionCancel)
+						.then(option => {
+							// nothing selected
+							if (typeof option === "undefined") {
+								return;
+							}
 
-											if (option.title === "Add Command") {
-												vscode.window.showInputBox(commandNameInputBoxOptions())
-													.then(commandName => {
-														vscode.window.showInputBox(commandScriptInputBoxOptions())
-															.then(commandScript => {
-																projectStorage.addCommand(projectName, commandName, commandScript);
-																projectStorage.save();
-															});
-													});
+							if (option.title === "Add Command") {
+								vscode.window.showInputBox(commandNameInputBoxOptions())
+									.then(commandName => {
+										vscode.window.showInputBox(commandScriptInputBoxOptions())
+											.then(commandScript => {
+												projectStorage.addCommand(projectName, commandName, commandScript);
+												projectStorage.save();
+											});
+									});
 
-												vscode.window.showInformationMessage("Project saved!");
-												return;
-											} else {
-												return;
-											}
-										});
-								}
-							});
-					});
+								vscode.window.showInformationMessage("Project saved!");
+								return;
+							} else {
+								return;
+							}
+						});
+				}
 			});
 	};
 
@@ -114,6 +115,20 @@ export function activate(context: vscode.ExtensionContext) {
 				isFirstCommand = false;
 			}
 		}
+	}
 
+	function getNewCommand(): TerminalCommand {
+		let _command: TerminalCommand;
+		vscode.window.showInputBox(commandNameInputBoxOptions())
+			.then(_commandName => {
+				vscode.window.showInputBox(commandScriptInputBoxOptions())
+					.then(_commandScript => {
+						_command = {
+							name: _commandName,
+							script: _commandScript
+						};
+					});
+			});
+		return _command;
 	}
 }
