@@ -39,11 +39,7 @@ export class ProjectStorage {
     this.projectList = [] as ProjectList;
   }
 
-  public addToProjectList(project_name: string, root_path: string, command_name: string, command_script: string): void {    
-    const command: TerminalCommand = {
-      name: command_name,
-      script: command_script
-    }
+  public addToProjectList(project_name: string, root_path: string, command: TerminalCommand): void {    
     this.projectList.push(new ProjectItem(project_name, root_path, command));
     return;
   }
