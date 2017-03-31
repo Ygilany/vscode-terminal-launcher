@@ -25,7 +25,7 @@ class ProjectItem implements Project {
   constructor(project_name: string, project_root_path: string, terminal_command: TerminalCommand) {
     this.name = project_name;
     this.root_path = project_root_path;
-    this.commands.push(terminal_command);
+    this.commands = [terminal_command];
   }
 }
 
@@ -36,62 +36,63 @@ export class ProjectStorage {
 
   constructor(filename: string) {
     this.filename = filename;
-    this.projectList = < ProjectList > [];
+    this.projectList = [] as ProjectList;
   }
 
   public addToProjectList(project_name: string, root_path: string, command_name: string, command_script: string): void {
-    let command: TerminalCommand = {
+    console.log(project_name, root_path, command_name, command_script);
+    
+    const command: TerminalCommand = {
       name: command_name,
       script: command_script
     }
     this.projectList.push(new ProjectItem(project_name, root_path, command));
     return;
   }
-  root_path
 
   public removeFormProjectList(project_name: string): Project {
 
-    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
+    const index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
     return this.projectList.splice(index, 1)[0];
   }
 
   public addCommand(project_name: string, command_name: string, command_script: string): void {
-    let command: TerminalCommand = {
+    const command: TerminalCommand = {
       name: command_name,
       script: command_script
     }
-    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
+    const index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
 
     this.projectList[index].commands.push(command);
   }
 
   public removeCommand(project_name: string, command_name: string): void {
-    let project_index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
-    let command_index = utils_obj.getIndexWherePropertyIs(this.projectList[project_index].commands, `name`, command_name)
+    const project_index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
+    const command_index = utils_obj.getIndexWherePropertyIs(this.projectList[project_index].commands, `name`, command_name)
 
     this.projectList[project_index].commands.splice(command_index, 1);
     return;
   }
 
   public updateRootPath(project_name: string, path: string): void {
-    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
+    const index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
 
     this.projectList[index].root_path = path;
   }
 
   public exists(project_name: string): boolean {
     let found: boolean = false;
+    
+    const index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
 
-    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
-
-    if (index !< 0 ) {
+    if (index > -1 ) {
       found = true;
     }
     return found;
   }
 
   public existsWithRootPath(root_path: string): Project {
-    let index = utils_obj.getIndexWherePropertyIs(this.projectList, `root_path`, root_path);
+    const index = utils_obj.getIndexWherePropertyIs(this.projectList, `root_path`, root_path);
 
     return this.projectList[index];
   }
@@ -120,7 +121,7 @@ export class ProjectStorage {
   }
 
   public reload() {
-    let items = [];
+    const items = [];
 
     // missing file (new install)
     if (!fs.existsSync(this.filename)) {
@@ -135,7 +136,7 @@ export class ProjectStorage {
   }
 
   public map(): any {
-    let newItems = this.projectList.map(item => {
+    const newItems = this.projectList.map(item => {
       return {
         label: item.name,
         description: item.root_path
