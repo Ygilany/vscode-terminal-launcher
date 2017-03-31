@@ -13,7 +13,8 @@
     "activationEvents": [
         "*",
         "onCommand:extension.saveProject",
-        "onCommand:extension.editProjects"
+        "onCommand:extension.editProjects",
+        "onCommand:extension.runProject"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -25,6 +26,10 @@
             {
                 "command": "extension.editProjects",
                 "title": "Ygilany2"
+            },
+            {
+                "command": "extension.runProject",
+                "title": "Fire For Project"
             }
         ]
     },

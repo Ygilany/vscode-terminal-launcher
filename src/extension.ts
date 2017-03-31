@@ -9,7 +9,7 @@ import {
 	commandScriptInputBoxOptions,
 	projectNameInputBoxOptions
 } from './inputBoxOptions';
-import { ProjectStorage } from './storage';
+import { Project, ProjectStorage } from './storage';
 
 const homeDir = os.homedir();
 const PROJECTS_FILE = `terminal-projects.json`;
@@ -22,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand(`extension.saveProject`, () => saveProject());
 	vscode.commands.registerCommand(`extension.editProjects`, () => editProjects());
+	vscode.commands.registerCommand(`extension.runProject`, () => runProject());
 
 	function saveProject() {
 		const projectName = vscode.workspace.rootPath.substr(vscode.workspace.rootPath.lastIndexOf("/") + 1);
@@ -90,17 +91,29 @@ export function activate(context: vscode.ExtensionContext) {
 	function getProjectFilePath() {
 		let projectFile: string;
 		const projectsLocation: string = vscode.workspace.getConfiguration("ygilany").get < string > ("projectsLocation");
-		console.log(projectsLocation);
-		if (projectsLocation !== "") {
-			console.log(`if 1`);
 
+		if (projectsLocation !== "") {
 			projectFile = path.join(projectsLocation, PROJECTS_FILE);
 		} else {
-			console.log(`else 1`);
-
 			const appdata = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Application Support" : "/var/local");
 			projectFile = path.join(appdata, "Code", "User", PROJECTS_FILE);
 		}
 		return projectFile;
+	}
+
+	function runProject() {
+		const workspacePath = vscode.workspace.rootPath;
+
+		const project: Project = projectStorage.existsWithRootPath(workspacePath);
+		let isFirstCommand: boolean = true;
+		for (const command of project.commands) {
+			const terminal = vscode.window.createTerminal(command.name);
+			terminal.sendText(command.script);
+			if (isFirstCommand) {
+				terminal.show();
+				isFirstCommand = false;
+			}
+		}
+
 	}
 }
