@@ -12,8 +12,8 @@ suite("Utils Tests", () => {
     })
     
     test("getIndexWherePropertyIs should return index of element in Array", () => {
-      let arr = [{name: "yahya"}, {name: "john"}, {name: "andrew"}];
-      let retval = utils_obj.getIndexWherePropertyIs(arr, `name`, `john`);
+      const arr = [{name: "yahya"}, {name: "john"}, {name: "andrew"}];
+      const retval = utils_obj.getIndexWherePropertyIs(arr, `name`, `john`);
 
       assert.equal(retval, 1);
     });
