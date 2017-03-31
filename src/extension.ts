@@ -3,9 +3,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as vscode from "vscode";
 
-import {
-	getConfig
-} from './config';
+import { getConfig } from './config';
 import {
 	commandNameInputBoxOptions,
 	commandScriptInputBoxOptions,
