@@ -4,6 +4,11 @@ import * as path from 'path';
 import * as vscode from "vscode";
 
 import { getConfig } from './config';
+import { 
+	commandNameInputBoxOptions,
+	commandScriptInputBoxOptions,
+	projectNameInputBoxOptions
+} from './inputBoxOptions';
 import { ProjectStorage } from './storage';
 
 const homeDir = os.homedir();
@@ -22,13 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const projectName = vscode.workspace.rootPath.substr(vscode.workspace.rootPath.lastIndexOf("/") + 1);
 		const projectPath = vscode.workspace.rootPath;
 
-		const projectNameInputBoxOptions = {
-			prompt: "Project Name",
-			placeHolder: "Type a name for your project",
-			value: projectName
-		} as vscode.InputBoxOptions;
-
-		vscode.window.showInputBox(projectNameInputBoxOptions)
+		vscode.window.showInputBox(projectNameInputBoxOptions(projectName))
 			.then(_projectName => {
 				if (typeof _projectName === "undefined") {
 					return;
@@ -38,19 +37,9 @@ export function activate(context: vscode.ExtensionContext) {
 					return;
 				}
 
-				const commandNameInputBoxOptions = {
-					prompt: "Command Name",
-					placeHolder: "Type a name for your command",
-				} as vscode.InputBoxOptions;
-
-				vscode.window.showInputBox(commandNameInputBoxOptions)
+				vscode.window.showInputBox(commandNameInputBoxOptions())
 					.then(_commandName => {
-						const commandScriptInputBoxOptions = {
-							prompt: "Command Script",
-							placeHolder: "Type your script command",
-						} as vscode.InputBoxOptions;
-
-						vscode.window.showInputBox(commandScriptInputBoxOptions)
+						vscode.window.showInputBox(commandScriptInputBoxOptions())
 							.then(_commandScript => {
 								if (!projectStorage.exists(projectName)) {
 									projectStorage.addToProjectList(_projectName, projectPath, _commandName, _commandScript);
@@ -73,9 +62,9 @@ export function activate(context: vscode.ExtensionContext) {
 											}
 
 											if (option.title === "Add Command") {
-												vscode.window.showInputBox(commandNameInputBoxOptions)
+												vscode.window.showInputBox(commandNameInputBoxOptions())
 													.then(commandName => {
-														vscode.window.showInputBox(commandScriptInputBoxOptions)
+														vscode.window.showInputBox(commandScriptInputBoxOptions())
 															.then(commandScript => {
 																projectStorage.addCommand(projectName, commandName, commandScript);
 																projectStorage.save();
