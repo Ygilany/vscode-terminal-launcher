@@ -3,7 +3,7 @@
     "displayName": "test",
     "description": "first extenstion",
     "version": "0.0.1",
-    "publisher": "null",
+    "publisher": "publisher",
     "engines": {
         "vscode": "^1.10.0"
     },
@@ -11,14 +11,20 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.FireDev"
+        "*",
+        "onCommand:extension.saveProject",
+        "onCommand:extension.editProjects"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.FireDev",
-                "title": "Fire Development enviroment"
+                "command": "extension.saveProject",
+                "title": "Ygilany1"
+            },
+            {
+                "command": "extension.editProjects",
+                "title": "Ygilany2"
             }
         ]
     },
