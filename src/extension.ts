@@ -41,10 +41,9 @@ export function activate(context: vscode.ExtensionContext) {
 					vscode.window.showWarningMessage("You must define a name for the project.");
 					return;
 				}
-				const _command: TerminalCommand = getNewCommand();
 
 				if (!projectStorage.exists(projectName)) {
-					projectStorage.addToProjectList(_projectName, projectPath, _command);
+					projectStorage.addToProjectList(_projectName, projectPath, getNewCommand());
 					projectStorage.save();
 
 					vscode.window.showInformationMessage("Project saved!");
@@ -64,15 +63,9 @@ export function activate(context: vscode.ExtensionContext) {
 							}
 
 							if (option.title === "Add Command") {
-								vscode.window.showInputBox(commandNameInputBoxOptions())
-									.then(commandName => {
-										vscode.window.showInputBox(commandScriptInputBoxOptions())
-											.then(commandScript => {
-												projectStorage.addCommand(projectName, commandName, commandScript);
-												projectStorage.save();
-											});
-									});
-
+								projectStorage.addCommand(projectName, getNewCommand());
+								projectStorage.save();
+								
 								vscode.window.showInformationMessage("Project saved!");
 								return;
 							} else {
