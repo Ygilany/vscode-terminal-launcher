@@ -1,14 +1,24 @@
 # VSCode-Terminal Project
 
-This is the README for your extension "ygilany-test". After writing up a brief description, we recommend including the following sections.
+setup your project's terminal commands and launch them through the VSCode integrated terminals.
 
+
+## Installation
+
+Press F1 in VSCode, type 
+```
+ext install vscode-terminal-project
+```
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+add new projects to the projects list and configure them with the termianl commands that you want to launch.
+
+\!\[Fire Dev Enviornment\]\(images/1.gif\)
+
+
 
 For example if there is an image subfolder under your extension project workspace:
 
-\!\[feature X\]\(images/feature-x.png\)
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
@@ -63,3 +73,7 @@ Added features X, Y, and Z.
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+
+## License
+
+MIT © Yahya Gilany
