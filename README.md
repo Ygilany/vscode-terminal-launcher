@@ -13,7 +13,7 @@ ext install vscode-terminal-project
 
 add new projects to the projects list and configure them with the termianl commands that you want to launch.
 
-\!\[Fire Dev Enviornment\]\(images/1.gif\)
+![Fire Dev Enviornment](images/1.gif)
 
 
 
