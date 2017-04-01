@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const projectPath = vscode.workspace.rootPath;
 
 		vscode.window.showInputBox(projectNameInputBoxOptions(projectName))
-			.then(_projectName => {
+			.then(async _projectName => {
 				if (typeof _projectName === "undefined") {
 					return;
 				}
@@ -42,11 +42,13 @@ export function activate(context: vscode.ExtensionContext) {
 					return;
 				}
 
-				if (!projectStorage.exists(projectName)) {
+				if (!projectStorage.exists(projectName)) {					
 					const commands: TerminalCommand[] = [];
 					do {
-						commands.push(getNewCommand());
-					} while (!isDone());
+						console.log(`hi`);
+						const __command: TerminalCommand = await getNewCommand();
+						commands.push(__command);
+					} while (await isDone());
 					projectStorage.addToProjectList(_projectName, projectPath, commands);
 					projectStorage.save();
 
@@ -60,14 +62,14 @@ export function activate(context: vscode.ExtensionContext) {
 					} as vscode.MessageItem;
 
 					vscode.window.showInformationMessage("Project already exists!", optionAddCommand, optionCancel)
-						.then(option => {
+						.then(async option => {
 							// nothing selected
 							if (typeof option === "undefined") {
 								return;
 							}
 
 							if (option.title === "Add Command") {
-								projectStorage.addCommand(projectName, getNewCommand());
+								projectStorage.addCommand(projectName, await getNewCommand());
 								projectStorage.save();
 								
 								vscode.window.showInformationMessage("Project saved!");
@@ -112,24 +114,19 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}
 
-	function getNewCommand(): TerminalCommand {
-		let _command: TerminalCommand;
-		vscode.window.showInputBox(commandNameInputBoxOptions())
-			.then(_commandName => {
-				vscode.window.showInputBox(commandScriptInputBoxOptions())
-					.then(_commandScript => {
-						_command = {
-							name: _commandName,
-							script: _commandScript
-						};
-					});
-			});
-		return _command;
+	async function getNewCommand(): Promise<TerminalCommand> {
+		const _commandName = await vscode.window.showInputBox(commandNameInputBoxOptions());
+		const _commandScript = await vscode.window.showInputBox(commandScriptInputBoxOptions());
+		
+		const _command: TerminalCommand = {
+			name: _commandName,
+			script: _commandScript
+		};
+						
+		return Promise.resolve(_command);
 	}
 
-	function isDone(): boolean {
-		let retval: boolean;
-
+	async function isDone(): Promise<boolean> {
 		const optionYes = {
 			title: "Yes"
 		} as vscode.MessageItem;
@@ -137,14 +134,15 @@ export function activate(context: vscode.ExtensionContext) {
 			title: "No"
 		} as vscode.MessageItem;
 
-		vscode.window.showInformationMessage("command is successfully added, do you need to add More?", optionYes, optionNo)
-			.then(option => {
-				if (option.title === `Yes`) {
-					retval =  true;
-				}else {
-					retval = false;
-				}
-			});
-		return retval;
+		const selection = await vscode.window.showInformationMessage(
+			`command is successfully added, do you need to add More?`,
+			optionYes, optionNo
+		);
+
+		if (selection.title === `Yes`) {
+			return Promise.resolve(true);
+		}else {
+			return Promise.resolve(false);
+		}
 	}
 }
