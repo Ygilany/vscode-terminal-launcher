@@ -1,7 +1,7 @@
 {
-    "name": "ygilany-test",
-    "displayName": "test",
-    "description": "first extenstion",
+    "name": "vscode-terminal-project",
+    "displayName": "Terminal Project",
+    "description": "This extension allows you to set up multiple integrated terminals with commands",
     "version": "0.0.1",
     "publisher": "publisher",
     "engines": {
@@ -42,12 +42,12 @@
     "devDependencies": {
         "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
+        "@types/lodash": "^4.14.59",
         "mocha": "^2.3.3",
         "typescript": "^2.0.3",
         "vscode": "^1.0.0"
     },
     "dependencies": {
-        "@types/lodash": "^4.14.59",
         "lodash": "^4.17.4"
     }
 }
