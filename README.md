@@ -54,7 +54,7 @@ To easily add more projects, edit, or re-cofigure a previously added project. yo
 ]
 ```
 
-## Run the terminal project
+### Run the terminal project
 Once you're in the same directory of a project that you saved earlier, you can trigger the terminal extention with the following command
 >```Terminal Project: Run Terminal Project```
 
