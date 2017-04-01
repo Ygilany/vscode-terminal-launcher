@@ -1,4 +1,4 @@
-# ygilany-test README
+# VSCode-Terminal Project
 
 This is the README for your extension "ygilany-test". After writing up a brief description, we recommend including the following sections.
 
