@@ -9,6 +9,10 @@ Press F1 in VSCode, type
 ```
 ext install vscode-terminal-project
 ```
+
+## Usage
+
+
 ## Features
 
 add new projects to the projects list and configure them with the termianl commands that you want to launch.
@@ -16,61 +20,26 @@ add new projects to the projects list and configure them with the termianl comma
 ![Fire Dev Enviornment](images/1.gif)
 
 
-
-For example if there is an image subfolder under your extension project workspace:
-
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+lodash is the only requirement for the extension
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* `vscode-terminal-project.filePath`: the path to the terminal-project.json file. 
+leave it empty if you want to use the default
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+The extension was only tested on macOS, some issues may arise on other Operating systems. 
+
+Please feel free to file new issues and submit pull requests to resolve any issue you may have.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+please refer to the change log CHANGELOG.md
 
 **Enjoy!**
 
