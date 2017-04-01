@@ -5,7 +5,7 @@ export interface Config {
 }
 
 export function getConfig(): Config {
-    const configuration = workspace.getConfiguration('ygilany');
+    const configuration = workspace.getConfiguration('terminal-project');
 
     return {
         projectsLocation: configuration.projectsLocation

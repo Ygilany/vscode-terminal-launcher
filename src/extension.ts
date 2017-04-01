@@ -24,9 +24,9 @@ export function activate(context: vscode.ExtensionContext) {
 	const projectStorage: ProjectStorage = new ProjectStorage(getProjectFilePath());
 	const errorLoading: string = projectStorage.load();
 
-	vscode.commands.registerCommand(`extension.saveProject`, () => saveProject());
-	vscode.commands.registerCommand(`extension.editProjects`, () => editProjects());
-	vscode.commands.registerCommand(`extension.runProject`, () => runProject());
+	vscode.commands.registerCommand(`terminalProject.saveProject`, () => saveProject());
+	vscode.commands.registerCommand(`terminalProject.editProjects`, () => editProjects());
+	vscode.commands.registerCommand(`terminalProject.runProject`, () => runProject());
 
 	function saveProject() {
 		const projectName = vscode.workspace.rootPath.substr(vscode.workspace.rootPath.lastIndexOf("/") + 1);
@@ -97,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function getProjectFilePath() {
 		let projectFile: string;
-		const projectsLocation: string = vscode.workspace.getConfiguration("ygilany").get < string > ("projectsLocation");
+		const projectsLocation: string = getConfig().projectsLocation;
 
 		if (projectsLocation !== "") {
 			projectFile = path.join(projectsLocation, PROJECTS_FILE);
