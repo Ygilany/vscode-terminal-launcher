@@ -3,7 +3,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as vscode from "vscode";
 
-import { getConfig } from './config';
+import { Config, getConfig } from './config';
 import {
 	commandNameInputBoxOptions,
 	commandScriptInputBoxOptions,
@@ -20,7 +20,7 @@ const PROJECTS_FILE = `terminal-projects.json`;
 
 // this method is called when your extension is activated
 export function activate(context: vscode.ExtensionContext) {
-
+	const configurations: Config = getConfig();
 	const projectStorage: ProjectStorage = new ProjectStorage(getProjectFilePath());
 	const errorLoading: string = projectStorage.load();
 
@@ -28,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.registerCommand(`terminalProject.editProjects`, () => editProjects());
 	vscode.commands.registerCommand(`terminalProject.runProject`, () => runProject());
 
-	function saveProject() {
+	function saveProject(): void {
 		const projectName = vscode.workspace.rootPath.substr(vscode.workspace.rootPath.lastIndexOf("/") + 1);
 		const projectPath = vscode.workspace.rootPath;
 
@@ -88,16 +88,16 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 	};
 
-	function editProjects() {
+	function editProjects():void {
 		vscode.workspace.openTextDocument(getProjectFilePath())
 			.then(document => {
 				vscode.window.showTextDocument(document);
 			});
 	};
 
-	function getProjectFilePath() {
+	function getProjectFilePath(): string {
 		let projectFile: string;
-		const projectsLocation: string = getConfig().projectsLocation;
+		const projectsLocation: string = configurations.projectsLocation;		
 
 		if (projectsLocation !== "") {
 			projectFile = path.join(projectsLocation, PROJECTS_FILE);
@@ -105,10 +105,11 @@ export function activate(context: vscode.ExtensionContext) {
 			const appdata = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Application Support" : "/var/local");
 			projectFile = path.join(appdata, "Code", "User", PROJECTS_FILE);
 		}
+		
 		return projectFile;
 	}
 
-	function runProject() {
+	function runProject(): void {
 		const workspacePath = vscode.workspace.rootPath;
 
 		const project: Project = projectStorage.existsWithRootPath(workspacePath);
