@@ -1,14 +1,14 @@
 import * as assert from 'assert';
 
-import {utils} from '../src/utils';
+import { Utils } from '../src/utils';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("Utils Tests", () => {
     
-    let utils_obj: utils;
+    let utils_obj: Utils;
     
     setup( () => {
-        utils_obj = new utils();        
+        utils_obj = new Utils();        
     })
     
     test("getIndexWherePropertyIs should return index of element in Array", () => {

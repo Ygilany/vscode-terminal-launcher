@@ -1,7 +1,7 @@
 import fs = require("fs");
-import {utils} from './utils';
+import { Utils } from './utils';
 
-const utils_obj = new utils();
+const utils_obj = new Utils();
 
 export interface TerminalCommand {
   name: string;
