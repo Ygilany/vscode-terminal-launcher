@@ -22,10 +22,10 @@ class ProjectItem implements Project {
   public root_path: string;
   public commands: TerminalCommand[];
 
-  constructor(project_name: string, project_root_path: string, terminal_command: TerminalCommand) {
+  constructor(project_name: string, project_root_path: string, terminal_commands: TerminalCommand[]) {
     this.name = project_name;
     this.root_path = project_root_path;
-    this.commands = [terminal_command];
+    this.commands = terminal_commands;
   }
 }
 
@@ -39,7 +39,7 @@ export class ProjectStorage {
     this.projectList = [] as ProjectList;
   }
 
-  public addToProjectList(project_name: string, root_path: string, command: TerminalCommand): void {    
+  public addToProjectList(project_name: string, root_path: string, command: TerminalCommand[]): void {    
     this.projectList.push(new ProjectItem(project_name, root_path, command));
     return;
   }

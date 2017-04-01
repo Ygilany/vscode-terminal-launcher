@@ -43,7 +43,11 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 
 				if (!projectStorage.exists(projectName)) {
-					projectStorage.addToProjectList(_projectName, projectPath, getNewCommand());
+					const commands: TerminalCommand[] = [];
+					do {
+						commands.push(getNewCommand());
+					} while (!isDone());
+					projectStorage.addToProjectList(_projectName, projectPath, commands);
 					projectStorage.save();
 
 					vscode.window.showInformationMessage("Project saved!");
@@ -121,5 +125,26 @@ export function activate(context: vscode.ExtensionContext) {
 					});
 			});
 		return _command;
+	}
+
+	function isDone(): boolean {
+		let retval: boolean;
+
+		const optionYes = {
+			title: "Yes"
+		} as vscode.MessageItem;
+		const optionNo = {
+			title: "No"
+		} as vscode.MessageItem;
+
+		vscode.window.showInformationMessage("command is successfully added, do you need to add More?", optionYes, optionNo)
+			.then(option => {
+				if (option.title === `Yes`) {
+					retval =  true;
+				}else {
+					retval = false;
+				}
+			});
+		return retval;
 	}
 }
