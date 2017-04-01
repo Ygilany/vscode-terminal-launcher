@@ -17,7 +17,7 @@ ext install vscode-terminal-project
 
 add new projects to the projects list and configure them with the termianl commands that you want to launch.
 
-![Fire Dev Enviornment](images/1.gif)
+![Run Terminal Project](images/run.gif)
 
 
 ## Requirements
