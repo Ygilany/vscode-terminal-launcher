@@ -88,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 	};
 
-	function editProjects():void {
+	function editProjects(): void {
 		vscode.workspace.openTextDocument(getProjectFilePath())
 			.then(document => {
 				vscode.window.showTextDocument(document);
