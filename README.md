@@ -25,7 +25,7 @@ To easily add more projects, edit, or re-cofigure a previously added project. yo
 [
 	{
 		"name": "vscode-terminal-project",
-		"root_path": "/Users/yahyagilany/Documents/projects/vscode-terminal-project",
+		"root_path": "/path/to/vscode-terminal-project",
 		"commands": [
 			{
 				"name": "test",
@@ -39,7 +39,7 @@ To easily add more projects, edit, or re-cofigure a previously added project. yo
 	},
 	{
 		"name": "API",
-		"root_path": "/Users/yahyagilany/Documents/0-work/API",
+		"root_path": "path/to/API",
 		"commands": [
 			{
 				"name": "Application",
