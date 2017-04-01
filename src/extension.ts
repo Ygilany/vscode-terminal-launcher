@@ -45,7 +45,6 @@ export function activate(context: vscode.ExtensionContext) {
 				if (!projectStorage.exists(projectName)) {					
 					const commands: TerminalCommand[] = [];
 					do {
-						console.log(`hi`);
 						const __command: TerminalCommand = await getNewCommand();
 						commands.push(__command);
 					} while (await isDone());
@@ -69,7 +68,14 @@ export function activate(context: vscode.ExtensionContext) {
 							}
 
 							if (option.title === "Add Command") {
-								projectStorage.addCommand(projectName, await getNewCommand());
+
+							const commands: TerminalCommand[] = [];
+							do {
+								const __command: TerminalCommand = await getNewCommand();
+								commands.push(__command);
+							} while (await isDone());
+
+								projectStorage.addCommands(projectName, commands);
 								projectStorage.save();
 								
 								vscode.window.showInformationMessage("Project saved!");
@@ -83,7 +89,10 @@ export function activate(context: vscode.ExtensionContext) {
 	};
 
 	function editProjects() {
-		vscode.window.showInformationMessage(`edit Projects not implemented yet`);
+		vscode.workspace.openTextDocument(getProjectFilePath())
+			.then(document => {
+				vscode.window.showTextDocument(document);
+			});
 	};
 
 	function getProjectFilePath() {

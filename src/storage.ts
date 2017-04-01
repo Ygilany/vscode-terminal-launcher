@@ -50,10 +50,10 @@ export class ProjectStorage {
     return this.projectList.splice(index, 1)[0];
   }
 
-  public addCommand(project_name: string, command: TerminalCommand): void {
+  public addCommands(project_name: string, commands: TerminalCommand[]): void {
     const index = utils_obj.getIndexWherePropertyIs(this.projectList, `name`, project_name);
 
-    this.projectList[index].commands.push(command);
+    this.projectList[index].commands = [...commands];
   }
 
   public removeCommand(project_name: string, command_name: string): void {
