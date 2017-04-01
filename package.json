@@ -21,11 +21,11 @@
         "commands": [
             {
                 "command": "extension.saveProject",
-                "title": "Ygilany1"
+                "title": "New Terminal Project"
             },
             {
                 "command": "extension.editProjects",
-                "title": "Ygilany2"
+                "title": "Edit Terminal Projects"
             },
             {
                 "command": "extension.runProject",
