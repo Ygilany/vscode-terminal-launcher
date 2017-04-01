@@ -12,24 +12,24 @@
     ],
     "activationEvents": [
         "*",
-        "onCommand:extension.saveProject",
-        "onCommand:extension.editProjects",
-        "onCommand:extension.runProject"
+        "onCommand:terminalProject.saveProject",
+        "onCommand:terminalProject.editProjects",
+        "onCommand:terminalProject.runProject"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.saveProject",
-                "title": "New Terminal Project"
+                "command": "terminalProject.saveProject",
+                "title": "Terminal Project: Save New Terminal Project"
             },
             {
-                "command": "extension.editProjects",
-                "title": "Edit Terminal Projects"
+                "command": "terminalProject.editProjects",
+                "title": "Terminal Project: Edit Terminal Projects"
             },
             {
-                "command": "extension.runProject",
-                "title": "Fire For Project"
+                "command": "terminalProject.runProject",
+                "title": "Terminal Project: Run Terminal Project"
             }
         ]
     },
