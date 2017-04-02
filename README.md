@@ -19,6 +19,8 @@ First you'll need to save a new project along with the scripts that you wish to 
 
 ### Edit the list of project
 To easily add more projects, edit, or re-cofigure a previously added project. you can edit the projects.json file yourself with the following command and the json file will open up ready for editiing.
+
+For each command a separate terminal window is used.
 > ``` Terminal Project: Edit Terminal Projects ```
 
 ```
@@ -28,12 +30,12 @@ To easily add more projects, edit, or re-cofigure a previously added project. yo
 		"root_path": "/path/to/vscode-terminal-project",
 		"commands": [
 			{
-				"name": "test",
-				"script": "echo nothing"
+				"name": "Run automated tests",
+				"script": "npm run test-watch"
 			},
 			{
-				"name": "another test",
-				"script": "echo nothing2"
+				"name": "transpile code with babel",
+				"script": "npm run babel-dev"
 			}
 		]
 	},
