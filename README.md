@@ -1,4 +1,4 @@
-# VSCode-Terminal Project
+# VSCode Terminal Launcher
 
 This extension comes really handy for any project in which you may need to have one or more terminal window open while developing. i.e.: Run Unit tests in watch mode, transpile your code using babel, ...etc.
 
@@ -70,10 +70,10 @@ Once you're in the same directory of a project that you saved earlier, you can t
 
 This extension contributes the following settings:
 
-* `	"terminalProject.projectsLocation"`: the path to the terminal-project.json file. 
+* `	"terminalLauncher.projectsLocation"`: the path to the terminal-project.json file. 
 leave it empty if you want to use the default
 #### example:
-`"terminalProject.projectsLocation: ""`
+`"terminalLauncher.projectsLocation: ""`
 
 ## Known Issues
 

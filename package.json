@@ -1,5 +1,5 @@
 {
-    "name": "vscode-terminal-project",
+    "name": "vscode-terminal-launcher",
     "displayName": "Terminal Launcher",
     "description": "This extension allows you to set up multiple integrated terminals with commands",
     "version": "0.0.1",
@@ -12,23 +12,23 @@
     ],
     "activationEvents": [
         "*",
-        "onCommand:terminalProject.saveProject",
-        "onCommand:terminalProject.editProjects",
-        "onCommand:terminalProject.runProject"
+        "onCommand:terminalLauncher.saveProject",
+        "onCommand:terminalLauncher.editProjects",
+        "onCommand:terminalLauncher.runProject"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "terminalProject.saveProject",
+                "command": "terminalLauncher.saveProject",
                 "title": "Terminal Project: Save New Terminal Project"
             },
             {
-                "command": "terminalProject.editProjects",
+                "command": "terminalLauncher.editProjects",
                 "title": "Terminal Project: Edit Terminal Projects"
             },
             {
-                "command": "terminalProject.runProject",
+                "command": "terminalLauncher.runProject",
                 "title": "Terminal Project: Run Terminal Project"
             }
         ]

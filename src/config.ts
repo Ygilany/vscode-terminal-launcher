@@ -5,7 +5,7 @@ export interface Config {
 }
 
 export function getConfig(): Config {
-    const configuration = workspace.getConfiguration('terminalProject');
+    const configuration = workspace.getConfiguration('terminalLauncher');
 
     return {
         projectsLocation: configuration.projectsLocation

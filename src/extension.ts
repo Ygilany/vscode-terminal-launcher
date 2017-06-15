@@ -24,9 +24,9 @@ export function activate(context: vscode.ExtensionContext) {
 	const projectStorage: ProjectStorage = new ProjectStorage(getProjectFilePath());
 	const errorLoading: string = projectStorage.load();
 
-	vscode.commands.registerCommand(`terminalProject.saveProject`, () => saveProject());
-	vscode.commands.registerCommand(`terminalProject.editProjects`, () => editProjects());
-	vscode.commands.registerCommand(`terminalProject.runProject`, () => runProject());
+	vscode.commands.registerCommand(`terminalLauncher.saveProject`, () => saveProject());
+	vscode.commands.registerCommand(`terminalLauncher.editProjects`, () => editProjects());
+	vscode.commands.registerCommand(`terminalLauncher.runProject`, () => runProject());
 
 	function saveProject(): void {
 		const projectName = vscode.workspace.rootPath.substr(vscode.workspace.rootPath.lastIndexOf("/") + 1);
