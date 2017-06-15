@@ -1,13 +1,13 @@
 import { workspace } from 'vscode';
 
 export interface Config {
-    projectsLocation: string
+    projectsConfigurationsLocation: string
 }
 
 export function getConfig(): Config {
     const configuration = workspace.getConfiguration('terminalLauncher');
 
     return {
-        projectsLocation: configuration.projectsLocation
+        projectsConfigurationsLocation: configuration.projectsConfigurationsLocation
     } as Config;
 }

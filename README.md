@@ -70,10 +70,10 @@ Once you're in the same directory of a project that you saved earlier, you can t
 
 This extension contributes the following settings:
 
-* `	"terminalLauncher.projectsLocation"`: the path to the terminal-project.json file. 
+* `	"terminalLauncher.projectsConfigurationsLocation"`: the path to the terminal-project.json file. 
 leave it empty if you want to use the default
 #### example:
-`"terminalLauncher.projectsLocation: ""`
+`"terminalLauncher.projectsConfigurationsLocation: ""`
 
 ## Known Issues
 

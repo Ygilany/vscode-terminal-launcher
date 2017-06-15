@@ -97,10 +97,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function getProjectFilePath(): string {
 		let projectFile: string;
-		const projectsLocation: string = configurations.projectsLocation;		
+		const projectsConfigurationsLocation: string = configurations.projectsConfigurationsLocation;		
 
-		if (projectsLocation !== "") {
-			projectFile = path.join(projectsLocation, PROJECTS_FILE);
+		if (projectsConfigurationsLocation !== "") {
+			projectFile = path.join(projectsConfigurationsLocation, PROJECTS_FILE);
 		} else {
 			const appdata = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Application Support" : "/var/local");
 			projectFile = path.join(appdata, "Code", "User", PROJECTS_FILE);
