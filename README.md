@@ -3,6 +3,7 @@
 setup your project's terminal commands and launch them through the VSCode integrated terminals.
 
 
+
 ## Installation
 
 Press F1 in VSCode, type 
@@ -26,8 +27,8 @@ For each command a separate terminal window is used.
 ```
 [
 	{
-		"name": "vscode-terminal-project",
-		"root_path": "/path/to/vscode-terminal-project",
+		"name": "vscode-terminal-launcher",
+		"root_path": "/path/to/vscode-terminal-launcher",
 		"commands": [
 			{
 				"name": "Run automated tests",

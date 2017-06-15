@@ -1,9 +1,9 @@
 {
     "name": "vscode-terminal-project",
-    "displayName": "Terminal Project",
+    "displayName": "Terminal Launcher",
     "description": "This extension allows you to set up multiple integrated terminals with commands",
     "version": "0.0.1",
-    "publisher": "publisher",
+    "publisher": "yahya-gilany",
     "engines": {
         "vscode": "^1.10.0"
     },
