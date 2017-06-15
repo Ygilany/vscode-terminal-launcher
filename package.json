@@ -18,18 +18,28 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Terminal Launcher Config.",
+            "properties": {
+                "terminalLauncher.projectsConfigurationsLocation": {
+                    "type": "string",
+                    "description": "The location of the JSON file with "
+                }
+            }
+        },
         "commands": [
             {
                 "command": "terminalLauncher.saveProject",
-                "title": "Terminal Project: Save New Terminal Project"
+                "title": "Terminal Launcher: Save New Terminal Project"
             },
             {
                 "command": "terminalLauncher.editProjects",
-                "title": "Terminal Project: Edit Terminal Projects"
+                "title": "Terminal Launcher: Edit Terminal Projects"
             },
             {
                 "command": "terminalLauncher.runProject",
-                "title": "Terminal Project: Run Terminal Project"
+                "title": "Terminal Launcher: Run Terminal Project"
             }
         ]
     },
