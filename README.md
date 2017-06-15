@@ -1,4 +1,5 @@
 # VSCode Terminal Launcher
+![Logo](images/logo200.png)
 
 This extension comes really handy for any project in which you may need to have one or more terminal window open while developing. i.e.: Run Unit tests in watch mode, transpile your code using babel, ...etc.
 
