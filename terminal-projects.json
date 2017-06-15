@@ -1,2 +1,12 @@
 [
+	// {
+	// 	"name": "Current Project Name",
+	// 	"root_path": "/path/to/current/project",
+	// 	"commands": [
+	// 		{
+	// 			"name": "Name of the task (name of the terminal window)",
+	// 			"script": "The command to be run the terminal window"
+	// 		}
+	// 	]
+	// }
 ]
