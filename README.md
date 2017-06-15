@@ -1,14 +1,17 @@
 # VSCode-Terminal Project
 
-setup your project's terminal commands and launch them through the VSCode integrated terminals.
+This extension comes really handy for any project in which you may need to have one or more terminal window open while developing. i.e.: Run Unit tests in watch mode, transpile your code using babel, ...etc.
 
+This extension allows you to set up and configure your projects with the terminal windows and commands that you want to run and it would launch them for you through the VSCode integrated terminals.
+
+See the demos below.
 
 
 ## Installation
 
 Press F1 in VSCode, type 
 ```
-ext install vscode-terminal-project
+ext install vscode-terminal-launcher
 ```
 
 ## Usage
