@@ -3,7 +3,7 @@
     "icon": "images/logo.png",
     "displayName": "Terminal Launcher",
     "description": "This extension allows you to set up multiple integrated terminals with commands",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "yahya-gilany",
     "author": {
         "name": "Yahya Gilany",
