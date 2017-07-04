@@ -1,4 +1,7 @@
 # VSCode Terminal Launcher
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/yahya-gilany.vscode-terminal-launcher.svg
+)](https://marketplace.visualstudio.com/items?itemName=yahya-gilany.vscode-terminal-launcher)
+
 ![Logo](images/logo200.png)
 
 This extension comes really handy for any project in which you may need to have one or more terminal window open while developing. i.e.: Run Unit tests in watch mode, transpile your code using babel, ...etc.
